@@ -4,13 +4,14 @@ import { GithubOutlined } from '@ant-design/icons';
 import './App.css';
 import { auth, provider,db} from './firebase'
 const Auth = props =>{
- const signInwithGoogle = () =>{ 
+ const signInWithGithub = () =>{ 
    console.log("started");
     auth.signInWithPopup(provider).then(function(result) {
+      console.log("users",result.additionalUserInfo.profile)
       db.collection("users").
       doc(result.user.uid).
       set({
-        email: result.user.email,
+        github_name: result.additionalUserInfo.username,
         user_name: result.user.displayName,
         createdAt:new Date()
       })
@@ -30,7 +31,7 @@ const Auth = props =>{
         <Row justify="center">
             <Card title="Login to Github" bordered={true} style={{ borderColor:'black',border:1,width: '350px' }}>
               <p>
-                <Button type="primary" icon={<GithubOutlined />} onClick={signInwithGoogle} style={{borderColor:'rgba(0, 0, 0, 0.07);'}}>
+                <Button type="primary" icon={<GithubOutlined />} onClick={signInWithGithub} style={{borderColor:'rgba(0, 0, 0, 0.07);'}}>
                   <Divider type="vertical" />
                     Sign In
                 </Button>
