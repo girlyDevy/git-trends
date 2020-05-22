@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import axios from "axios";
-import { List, Avatar, Space, Button, Row, Badge } from "antd";
+import { List, Avatar, Space, Button, Row, Badge,Spin} from "antd";
 import {
   ForkOutlined,
   LikeOutlined,
@@ -11,6 +11,7 @@ import {
 import { T } from "antd/lib/upload/utils";
 const Dashboard = (props) => {
   const [listData, setData] = useState([]);
+  const [load, setLoading] = useState(true);
   const fetchData = () => {
     axios
       .get("https://github-trending-api.now.sh/repositories?since=daily")
@@ -18,6 +19,7 @@ const Dashboard = (props) => {
         // handle success
         if (response.data) {
           setData(response.data.slice(0, 10));
+          setLoading(false)
         }
       })
       .catch((error) => {
@@ -56,12 +58,12 @@ const Dashboard = (props) => {
       <h4 className="page-header">
         See what the GitHub community is most excited about today.
       </h4>
-
-      <List
+ <List
         style={{ backgroundColor: "white" }}
         className="list-div"
         itemLayout="vertical"
         size="large"
+        loading={load}
         dataSource={listData}
         renderItem={(item, i) => (
           <List.Item
@@ -106,7 +108,7 @@ const Dashboard = (props) => {
               }
               description={item.description}
             />
-            {item.watchers}
+           
           </List.Item>
         )}
       />
