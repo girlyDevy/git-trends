@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import axios from "axios";
-import { List, Avatar, Space, Button, Row, Badge,Spin} from "antd";
+import { List, Avatar, Space, Button, Row, Badge} from "antd";
 import {
   ForkOutlined,
   LikeOutlined,
