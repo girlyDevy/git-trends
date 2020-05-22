@@ -11,12 +11,11 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch> 
             <Route exact path="/" component={Auth}/>
-            <Route exact path="/dashboard" component={Dashboard}/>
-           {/* { localStorage.getItem("token")!==null ?
+          { localStorage.getItem("token")!==null ?
            (<Route exact path="/dashboard" component={Dashboard}/>)
            : (<Redirect to="/" />
            )
-} */}
+} 
         </Switch>
       </BrowserRouter>
   </React.StrictMode>,
