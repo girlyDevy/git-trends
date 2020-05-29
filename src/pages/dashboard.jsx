@@ -9,6 +9,7 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { T } from "antd/lib/upload/utils";
+import   '../tailwind.css'
 const Dashboard = (props) => {
   const [listData, setData] = useState([]);
   const [load, setLoading] = useState(true);
@@ -44,6 +45,7 @@ const Dashboard = (props) => {
   return (
     <div className="root-div">
       <Row align="top" justify="end">
+        
         <Button
           type="primary"
           shape="round"
@@ -107,6 +109,7 @@ const Dashboard = (props) => {
                 </a>
               }
               description={item.description}
+              className="tw-my-24"
             />
            
           </List.Item>
